@@ -1,0 +1,1 @@
+# Whispir API Postman Collection
