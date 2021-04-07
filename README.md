@@ -326,13 +326,6 @@ After installing Postman and importing the Whispir Postman Collection and Whispi
 You can request the latest Whispir Postman Collection from [support@whispir.com](mailto:support@whispir.com) .
 
 
-
-<p id="gdcalert1" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image1.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert2">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image1.png "image_tooltip")
-
-
 **_“We recommend making duplicates of the collection and the environment so you can always restore to a known good configuration.”_**
 
 
@@ -412,23 +405,10 @@ Over time, the Whispir Postman Collection will add environment variables from in
 
 
 
-<p id="gdcalert2" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image2.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert3">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image2.png "image_tooltip")
-
-
-
 ## Authentication
 
 The Whispir Postman Collection uses “inherit authentication from parent” on each request to reduce the configuration burden on you, the user.  The Collection comes preconfigured with the {{whispir-username}}, {{whispir-password}} and {{x-api-key}} environment variables set in the Basic Auth parameters and request headers respectively. 
 
-
-
-<p id="gdcalert3" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image3.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert4">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image3.png "image_tooltip")
 
 
 *Note - The use of the `apikey `in the querystring has been removed from the collection. 
@@ -453,12 +433,6 @@ As you go through the collection you’ll notice many requests are repeated, and
 
 
 
-<p id="gdcalert4" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image4.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert5">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image4.png "image_tooltip")
-
-
 The requests with the same name, such as POST Contact and PUT Contact are the same URL, they only differ by the HTTP method used in the request to Whispir.  The naming convention helps to identify which requests use the same endpoint.
 
 The requests with `[location]` at the end use the Location HTTP header as a means of identifying the resource, typically after a POST request.  This is the same URL reported by Whispir as the ‘self’ link.  In some situations where you have the URL but not the ID of an entity, you can modify the `[object-location]` environment value and use a` [location]` method to retrieve the details.
@@ -477,12 +451,6 @@ You only need to perform a couple steps to add a request to the collection:
 1. In your request, locate the Headers and choose **Whispir Headers **from the presets
 2. Click ‘Save’ and put the request in a folder or create your own 
 
-
-
-<p id="gdcalert5" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image5.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert6">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image5.png "image_tooltip")
 
 
 Following this procedure will ensure your request inherits the authentication configured for the collection and has the correct header parameters.
