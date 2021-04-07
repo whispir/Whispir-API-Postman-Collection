@@ -249,7 +249,7 @@ Accept and Content-Type headers are used to specify the API version and the dial
 
 ```
 Accept: application/vnd.whispir.message-v1+json
-
+```
 
 <table>
   <tr>
