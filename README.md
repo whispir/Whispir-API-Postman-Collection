@@ -253,7 +253,7 @@ Accept: application/vnd.whispir.message-v1+json
 
 <table>
   <tr>
-   <td>```
+   <td>
 
 Method
    </td>
