@@ -7,6 +7,204 @@
 	},
 	"item": [
 		{
+			"name": "Activities",
+			"item": [
+				{
+					"name": "Activities [Global]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-api-key}}",
+								"description": "Whispir API Key (Required)",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/vnd.whispir.activity-v1+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base-url}}/activities",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"activities"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "Map",
+									"disabled": true
+								},
+								{
+									"key": "module",
+									"value": "Message",
+									"disabled": true
+								},
+								{
+									"key": "user",
+									"value": "jason",
+									"disabled": true
+								},
+								{
+									"key": "workspaceName",
+									"value": "sandbox",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "Successful",
+									"disabled": true
+								},
+								{
+									"key": "description",
+									"value": "Imported",
+									"disabled": true
+								},
+								{
+									"key": "startTime",
+									"value": "01/01/2020%2000:00",
+									"disabled": true
+								},
+								{
+									"key": "endTime",
+									"value": "01/01/2021%2000:00",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "20",
+									"disabled": true
+								}
+							]
+						},
+						"description": "All parameters are optional and not all combinations are valid.\n\n**Action**\nCreate\nUpdate\nMove\nCopy\nDraft\nSend\nModified\nDelete\nContact Import File\nLogin\nApprove\nReject\nDispatch\nRegister\nAccept\nClosed\nMap\nUn-map\n\n**Module**\nSystem\nMessage\nScheduled Message\nUser\nContact\nDistributionList\nTemplate\nWorkspace\nEvent\nWebService\nSettings\nConversation\nGateway\nWorkspace Mapping\nFolders\nTeam\nRSS\nAPI Mapping\nAsset\nInstruction\n\n**Status**\nSuccessful\nFailed\nRejected"
+					},
+					"response": []
+				},
+				{
+					"name": "Activities",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-api-key}}",
+								"description": "Whispir API Key (Required)",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/vnd.whispir.activity-v1+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base-url}}/workspaces/{{workspace-id}}/activities",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"workspaces",
+								"{{workspace-id}}",
+								"activities"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "Map",
+									"disabled": true
+								},
+								{
+									"key": "module",
+									"value": "Message",
+									"disabled": true
+								},
+								{
+									"key": "user",
+									"value": "jason",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "Successful",
+									"disabled": true
+								},
+								{
+									"key": "description",
+									"value": "Imported",
+									"disabled": true
+								},
+								{
+									"key": "startTime",
+									"value": "01/01/2019%2000:00",
+									"disabled": true
+								},
+								{
+									"key": "endTime",
+									"value": "01/01/2019%2000:00",
+									"disabled": true
+								}
+							]
+						},
+						"description": "All parameters are optional and not all combinations are valid.\n\nFree text parameters are 'contains' matched.\n\n**Actions**\nCreate\nUpdate\nMove\nCopy\nDraft\nSend\nModified\nDelete\nContact Import File\nLogin\nApprove\nReject\nDispatch\nRegister\nAccept\nClosed\nMap\nUn-Map\nIVR Connection\nPublish\n\n**Modules**\nSystem\nMessage\nScheduled Message\nUser\nContact\nDistributionList\nTemplate\nWorkspace\nEvent\nWebService\nSettings\nConversation\nGateway\nWorkspace Mapping\nFolders\nTeam\nRSS\nAPI Mapping\nAsset\nInstruction\nIVR\nAnnouncement\n2FA\nMessage Publish\nTwitter\nFacebook\n\n**Statuses**\nFailed\nSuccessful\nRejected"
+					},
+					"response": []
+				},
+				{
+					"name": "Activities",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-api-key}}",
+								"description": "Whispir API Key (Required)",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/vnd.whispir.activity-v1+json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.whispir.activity-v1+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"module\": \"Message\",\n  \"action\" : \"Send\",\n  \"status\" : \"Successful\",\n  \"description\" : \"Message sent via REST API\"\n}"
+						},
+						"url": {
+							"raw": "{{base-url}}/workspaces/{{workspace-id}}/activities",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"workspaces",
+								"{{workspace-id}}",
+								"activities"
+							]
+						},
+						"description": "All parameters are optional and not all combinations are valid.\n\n**Action**\nCreate\nUpdate\nMove\nCopy\nDraft\nSend\nModified\nDelete\nContact Import File\nLogin\nApprove\nReject\nDispatch\nRegister\nAccept\nClosed\nMap\nUn-map\n\n**Module**\nSystem\nMessage\nScheduled Message\nUser\nContact\nDistributionList\nTemplate\nWorkspace\nEvent\nWebService\nSettings\nConversation\nGateway\nWorkspace Mapping\nFolders\nTeam\nRSS\nAPI Mapping\nAsset\nInstruction\n\n**Status**\nSuccessful\nFailed\nRejected"
+					},
+					"response": []
+				}
+			],
+			"description": "https://developers.whispir.com/docs/activities"
+		},
+		{
 			"name": "Callbacks",
 			"item": [
 				{
@@ -1406,30 +1604,31 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"var rawStr = `{\r",
+									"\r",
+									" var rawStr = `{\r",
 									"    \"contacts\" : [{\r",
-									"        \"firstName\": \"{{$randomFirstname}}\",\r",
-									"        \"lastName\": \"Smith\",\r",
-									"        \"workEmailAddress1\": \"{{test-email}}\",\r",
-									"        \"workMobilePhone1\": \"{{test-sms}}\",\r",
-									"        \"workEmailAddress2\": \"{{test-email}}\",\r",
-									"        \"workMobilePhone2\": \"{{test-sms}}\",\r",
+									"        \"firstName\": \"Gwen\",\r",
+									"        \"lastName\": \"Lee\",\r",
+									"        \"workEmailAddress1\": \"${pm.environment.get('test-email')}\",\r",
+									"        \"workMobilePhone1\": \"${pm.environment.get('test-sms')}\",\r",
+									"        \"workEmailAddress2\": \"${pm.environment.get('test-email')}\",\r",
+									"        \"workMobilePhone2\": \"${pm.environment.get('test-sms')}\",\r",
 									"        \"workCountry\": \"Australia\",\r",
 									"        \"timezone\": \"+10\"\r",
 									"    },{\r",
-									"        \"firstName\": \"{{$randomFirstName}}\",\r",
-									"        \"lastName\": \"{{$randomLastName}}\",\r",
-									"        \"workEmailAddress1\": \"{{test-email}}\",\r",
-									"        \"workMobilePhone1\": \"{{test-sms}}\",\r",
-									"        \"workEmailAddress2\": \"{{test-email}}\",\r",
-									"        \"workMobilePhone2\": \"{{test-sms}}\",\r",
+									"        \"firstName\": \"Hamish\",\r",
+									"        \"lastName\": \"McAllister\",\r",
+									"        \"workEmailAddress1\": \"${pm.environment.get('test-email')}\",\r",
+									"        \"workMobilePhone1\": \"${pm.environment.get('test-sms')}\",\r",
+									"        \"workEmailAddress2\": \"${pm.environment.get('test-email')}\",\r",
+									"        \"workMobilePhone2\": \"${pm.environment.get('test-sms')}\",\r",
 									"        \"workCountry\": \"Australia\",\r",
 									"        \"timezone\": \"+10\"\r",
 									"    }]\r",
 									"}`\r",
 									"\r",
 									"var base64 =  Buffer.from(rawStr).toString('base64')\r",
-									"pm.environment.set('resource', base64)"
+									"pm.environment.set('resource', base64) "
 								],
 								"type": "text/javascript"
 							}
@@ -1502,7 +1701,7 @@
 					"response": []
 				},
 				{
-					"name": "Import Contacts JSON",
+					"name": "2. Import Contacts",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -1531,7 +1730,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"resourceId\": \"{{resource-id}}\",\r\n    \"importType\" : \"contact\",\r\n    \"importOptions\": {\r\n        \"fieldMapping\" : {\r\n            \"firstName\": \"firstName\",\r\n            \"lastName\": \"lastName\",\r\n            \"workMobilePhone1\": \"workEmailAddress1\",\r\n            \"workCountry\": \"workCountry\",\r\n            \"timezone\": \"timezone\"\r\n        },\r\n        \"importMode\" : \"replace\"\r\n    }\r\n \r\n}",
+							"raw": "{\r\n    \"resourceId\": \"{{resource-id}}\",\r\n    \"importType\" : \"contact\",\r\n    \"importOptions\": {\r\n        \"fieldMapping\" : {\r\n            \"firstName\": \"firstName\",\r\n            \"lastName\": \"lastName\",\r\n            \"workMobilePhone1\": \"workMobilePhone1\",\r\n            \"workEmailAddress1\":\"workEmailAddress1\",\r\n            \"workMobilePhone2\": \"workMobilePhone2\",\r\n            \"workEmailAddress2\":\"workEmailAddress2\",\r\n            \"workCountry\": \"workCountry\",\r\n            \"timezone\": \"timezone\"\r\n        },\r\n        \"importMode\" : \"replace\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1539,11 +1738,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base-url}}/imports",
+							"raw": "{{base-url}}/workspaces/{{workspace-id}}/imports",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
+								"workspaces",
+								"{{workspace-id}}",
 								"imports"
 							]
 						}
@@ -1608,7 +1809,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"to\": \"{{test-sms}}\",\n    \"subject\": \"Postman Message\",\n    \"body\": \"{{$randomPhrase}}\",\n    \"callbackId\": \"{{callback-name}}\",\n    \"callbackParameters\": {\n        \"CustomID\": \"890h0ef0fe09efw90e0jsdj0\"\n    },\n    \"label\": \"Another Campaign\",\n    \"category\": \"New Category\",\n    \"features\": {\n        \"aliasOption\": {\n            \"aliasName\": \"Jason\"\n        }\n    }\n}",
+									"raw": "{\n    \"to\": \"{{test-sms}}\",\n    \"subject\": \"Postman Message\",\n    \"body\": \"{{$randomPhrase}}\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1656,9 +1857,9 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"var toCount = []; toCount.length = 1000\r",
-											"var toField = toCount.map( (v,i) => {return `test${i}@mailinator.com,`})\r",
-											"console.log(toField)"
+											"var toCount = Array(10).fill(0)\r",
+											"var toField = toCount.map((v,i) => `test${(i)}@mailinator.com`)\r",
+											"pm.environment.set('to-field', toField.join(','))"
 										],
 										"type": "text/javascript"
 									}
@@ -1686,7 +1887,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n   \"to\":  \"{{test-sms}}\",\n   \"subject\":  \"Postman Message\",\n   \"body\":  \"{{$randomPhrase}}\",\n   \"callbackId\" : \"{{callback-name}}\",\n   \"callbackParameters\" : {\n\t\t\"CustomID\" : \"890h0ef0fe09efw90e0jsdj0\"\n   },\n   \"label\":\"Another Campaign\",\n   \"category\":\"New Category\"\n}",
+									"raw": "{\n   \"to\":  \"{{to-field}}\",\n   \"subject\":  \"Postman Message\",\n   \"body\":  \"{{$randomPhrase}}\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3914,7 +4115,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"to\": \"{{test-sms}}\",\r\n    \"subject\": \"Message Purpose\",\r\n    \"whatsapp\": {\r\n        \"type\": \"icebreaker\",\r\n        \"name\": \"whats_app_template\",\r\n        \"content\": {\r\n            \"header\": {\r\n                \"image\": {\r\n                    \"link\": \"https://www.whispir.com/assets/img/logo-white.svg\"\r\n                }\r\n            },\r\n            \"body\": [\r\n                {\r\n                    \"text\": \"Product Name\"\r\n                },\r\n                {\r\n                    \"text\": \"Message Purpose\"\r\n                },\r\n                {\r\n                    \"text\": \"Company Name\"\r\n                }\r\n            ]\r\n        }\r\n    }\r\n}",
+									"raw": "{\r\n    \"to\": \"{{test-sms}}\",\r\n    \"subject\": \"Message Purpose\",\r\n    \"whatsapp\": {\r\n        \"type\": \"icebreaker\",\r\n        \"name\": \"debtquityupdate\",\r\n        \"content\": {\r\n            \"header\": {\r\n                \"image\": {\r\n                    \"link\": \"https://d1ccvuha0qk3lj.cloudfront.net/uploads/blog/Blog-image-QAF_2021.png\"\r\n                }\r\n            },\r\n            \"body\": [\r\n                {\r\n                    \"text\": \"{{$randomFirstName}}\"\r\n                },\r\n                {\r\n                    \"text\": \"{{$randomUrl}}\"\r\n                }\r\n            ]\r\n        }\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -7086,6 +7287,106 @@
 		{
 			"name": "Testing",
 			"item": []
+		},
+		{
+			"name": "Utils",
+			"item": [
+				{
+					"name": "Delete All Contacts",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = JSON.parse(responseBody)\r",
+									"var contacts = response.contacts\r",
+									"\r",
+									"var base64 =  Buffer.from(pm.environment.get('whispir-username') + \":\" + pm.environment.get('whispir-password')).toString('base64')\r",
+									"\r",
+									"delContacts = []\r",
+									"contacts.forEach( contact => {\r",
+									"    pm.sendRequest({\r",
+									"      url: contact.link[0].uri, //+'action=deleteAll'\r",
+									"      method: 'DELETE',\r",
+									"      header: [\r",
+									"          'x-api-key:'+pm.environment.get('x-api-key'),\r",
+									"          'Accept:application/vnd.whispir.contact-v1+json',\r",
+									"          'Authorization: Basic ' + base64\r",
+									"    ]\r",
+									"    }, function (err, res) {\r",
+									"      console.log(err ? err : \"Contact \" + contact.link[0].uri + \" DELETED\" );\r",
+									"    });\r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"type": "text",
+								"value": "{{x-api-key}}"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/vnd.whispir.contact-v1+json"
+							}
+						],
+						"url": {
+							"raw": "{{retrieveContacts}}?limit=0&offset=0",
+							"host": [
+								"{{retrieveContacts}}"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "0"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						},
+						"description": "To use this request, ensure you have:\n_{{retrieveContacts}}_ from the desired workspace\n\nThis method will (GET) retrieve all the contacts in a given workspace and iteratively DELETE them all.  Add _action=deleteAll_ to remove the contact from all workspaces.\n\nYou can refine the set of contcats to delete by using selection parameters in the GET querystring\n\n* sortOrder:asc\n* sortFields:lastName,firstName,companyName\n* firstName: A\n* lastName: Z\n* companyName:Example Inc\n* fields:firstName,lastName,companyName"
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
 		},
 		{
 			"name": "1. Whispir.com",
