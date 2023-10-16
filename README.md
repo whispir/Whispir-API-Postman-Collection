@@ -14,7 +14,7 @@ Whispir’s REST-based transactional API makes it easy to develop host-to-host a
 
 This document will guide you on the proper use of the Whispir REST API Postman Collection and how to test and develop your integrated client system.  Each API call is documented with an example and all the required HTTP URLs, headers and bodies as needed.
 
-Refer to the [Developers Portal](https://link-url-here.org) for more information and guides on using the Whispir REST API.
+Refer to the [Developers Portal](https://developers.whispir.com) for more information and guides on using the Whispir REST API.
 
 
 ## Document conventions
