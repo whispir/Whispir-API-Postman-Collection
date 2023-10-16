@@ -14,6 +14,8 @@ Whispir’s REST-based transactional API makes it easy to develop host-to-host a
 
 This document will guide you on the proper use of the Whispir REST API Postman Collection and how to test and develop your integrated client system.  Each API call is documented with an example and all the required HTTP URLs, headers and bodies as needed.
 
+Refer to the [Developers Portal](https://developers.whispir.com) for more information and guides on using the Whispir REST API.
+
 
 ## Document conventions
 
@@ -323,9 +325,6 @@ Modern development practices recommend development, testing and production appli
 
 After installing Postman and importing the Whispir Postman Collection and Whispir Postman Environment definitions, you’ll have access to the Whispir REST requests and a set of Environment variables to use in the Whispir collection.
 
-You can request the latest Whispir Postman Collection from [support@whispir.com](mailto:support@whispir.com) .
-
-
 **_“We recommend making duplicates of the collection and the environment so you can always restore to a known good configuration.”_**
 
 
@@ -456,6 +455,7 @@ You only need to perform a couple steps to add a request to the collection:
 Following this procedure will ensure your request inherits the authentication configured for the collection and has the correct header parameters.
 
 Additionally, you should set the `Accept `and` Content-Type` headers to ensure the body format is specified.
+
 
 
 <!-- Footnotes themselves at the bottom. -->
