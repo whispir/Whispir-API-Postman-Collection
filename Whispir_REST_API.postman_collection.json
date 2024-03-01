@@ -7389,6 +7389,91 @@
 			]
 		},
 		{
+			"name": "Verify",
+			"description": "Sends a code to the recipient to verify a transaction.",
+			"item": [
+				{
+					"name": "Generate OTP",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = JSON.parse(responseBody);",
+									"pm.environment.set(\"current-verify-id\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-api-key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"workspaceId\": \"{{workspace-id}}\",\n    \"channel\": \"sms\",\n    \"to\": \"+63123456789\",\n    \"codeLength\": 6,\n    \"expiresIn\": 18000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/otp/send-code",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"otp",
+								"send-code"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify OTP",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-api-key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"to\": \"+63123456789\",\n    \"code\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/otp/{{current-verify-id}}/verify-code",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"otp",
+								"{{current-verify-id}}",
+								"verify-code"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "1. Whispir.com",
 			"event": [
 				{
