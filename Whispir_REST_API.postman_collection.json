@@ -7389,6 +7389,1340 @@
 			]
 		},
 		{
+			"name": "Verify",
+			"description": "Sends a code to the recipient to verify a transaction.",
+			"item": [
+				{
+					"name": "Generate OTP",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = JSON.parse(responseBody);",
+									"pm.environment.set(\"current-verify-id\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-api-key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"workspaceId\": \"{{workspace-id}}\",\n    \"channel\": \"sms\",\n    \"to\": \"+63123456789\",\n    \"codeLength\": 6,\n    \"expiresIn\": 18000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/otp/send-code",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"otp",
+								"send-code"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201: Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{V5_API_KEY}}",
+										"type": "text"
+									},
+									{
+										"key": "whispirUserId",
+										"value": "{{USER_ID}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"workspaceId\": \"{{TEST_WORKSPACE_ID}}\",\n    \"channel\": \"sms\",\n    \"phoneNumber\": \"+639075652923\",\n    \"codeLength\": 6,\n    \"expiresIn\": 18000\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/send-code",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"send-code"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "238"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 Jul 2023 14:02:28 GMT"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "6ac5ff6a-fc8f-445e-9001-685de8cb883c"
+								},
+								{
+									"key": "x-amzn-Remapped-x-amzn-RequestId",
+									"value": "1117e97b-0ffd-4006-85f8-2c4edb73e4cc"
+								},
+								{
+									"key": "x-amzn-Remapped-Content-Length",
+									"value": "238"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 0e61cdf08a154ac7d647c2dc742467a6.cloudfront.net (CloudFront), 1.1 933f4fb3c49c9a37f5b5461deacd212c.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "Hl-uNG3bywMFiZQ="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-64a577f4-5fa1a8574f8506495769430d;Sampled=0;lineage=a57e7ed2:0"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "SYD62-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "HKG60-C1"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Wed, 05 Jul 2023 14:02:28 GMT"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "diqYjsEeyOT1GK1lzT9lszKl4YDrL1gI020nCl1lPa28hXlgHyGqWA=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"azkP8DJEEsujuhwzO-O_N\",\n    \"channel\": \"sms\",\n    \"codeLength\": 6,\n    \"phoneNumber\": \"+63123456789\",\n    \"expiresAt\": \"2023-07-05T19:02:28.713Z\",\n    \"status\": \"pending\",\n    \"links\": {\n        \"verify\": \"https://api.au.whispir.com/otp/azkP8DJEEsujuhwzO-O_N/verify\"\n    }\n}"
+						},
+						{
+							"name": "400: Validation Error (Single)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{V5_API_KEY}}",
+										"type": "text"
+									},
+									{
+										"key": "whispirUserId",
+										"value": "{{USER_ID}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"workspaceId\": \"{{TEST_WORKSPACE_ID}}\",\n    \"channel\": \"sms\",\n    \"phoneNumber\": \"+639075652923\",\n    \"codeLength\": 200,\n    \"expiresIn\": 18000\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/send-code",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"send-code"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "179"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 Jul 2023 14:07:42 GMT"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "cfb4082f-541e-478b-a68c-d675278bb086"
+								},
+								{
+									"key": "x-amzn-Remapped-x-amzn-RequestId",
+									"value": "06ed5b13-7c62-4f5b-bc46-9385b9ac0236"
+								},
+								{
+									"key": "x-amzn-Remapped-Content-Length",
+									"value": "179"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 80221b5cb6d99c6010a1a445f2ea0f30.cloudfront.net (CloudFront), 1.1 933f4fb3c49c9a37f5b5461deacd212c.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "Hl_fQGJ1SwMFzfA="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-64a5792e-1c137ba47d290e4f6d254cbb;Sampled=0;lineage=a57e7ed2:0"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "SYD62-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "HKG60-C1"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Wed, 05 Jul 2023 14:07:42 GMT"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Error from cloudfront"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "305rlgUmu7HScr2eILRvGalEFhDDnEWkJKyp_6udzG22YQQWDtgtVQ=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"message\": \"Client specified an invalid argument, request body or query param\",\n    \"detail\": \"Error in parameter \\\"codeLength\\\", number must be lesser than or equal to 15.\"\n}"
+						},
+						{
+							"name": "400: Validation Error (Multiple)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{V5_API_KEY}}",
+										"type": "text"
+									},
+									{
+										"key": "whispirUserId",
+										"value": "{{USER_ID}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"workspaceId\": \"{{TEST_WORKSPACE_ID}}\",\n    \"phoneNumber\": \"123\",\n    \"codeLength\": 600,\n    \"expiresIn\": 18000\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/send-code",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"send-code"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "366"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 Jul 2023 14:09:39 GMT"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "5d4512f7-fed8-4a50-bf9a-abc00bb2048d"
+								},
+								{
+									"key": "x-amzn-Remapped-x-amzn-RequestId",
+									"value": "854cb945-82c2-4d35-8165-3ac3080a40d5"
+								},
+								{
+									"key": "x-amzn-Remapped-Content-Length",
+									"value": "366"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 9ce11977697b826548974c991c092622.cloudfront.net (CloudFront), 1.1 933f4fb3c49c9a37f5b5461deacd212c.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "Hl_xhEGtywMFQOA="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-64a579a3-61608c6843d3add36efddfda;Sampled=0;lineage=a57e7ed2:0"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "SYD62-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "HKG60-C1"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Wed, 05 Jul 2023 14:09:39 GMT"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Error from cloudfront"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "TMa99PlsIyiNg_stsq3BZpcZozmZWsU8s_6SzXmyVPIb65e5x1RWNA=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"message\": \"Client specified an invalid argument, request body or query param\",\n    \"detail\": \"Error in parameter \\\"codeLength\\\", number must be lesser than or equal to 15. Error in parameter \\\"phoneNumber\\\", phone number should use the following format: \\\"+{areacode}{number}\\\" (e.g. +631234567890). Error in parameter \\\"channel\\\", this is required.\"\n}"
+						},
+						{
+							"name": "Generate OTP",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{V5_API_KEY}}",
+										"type": "text"
+									},
+									{
+										"key": "whispirUserId",
+										"value": "{{USER_ID}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "whispiraccountid",
+										"value": "{{USER_ID}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"workspaceId\": \"{{TEST_WORKSPACE_ID}}\",\n    \"channel\": \"sms\",\n    \"to\": \"+639075652923\",\n    \"codeLength\": 6,\n    \"expiresIn\": 18000\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api-dev.whispirdev.com/otp/send-code",
+									"protocol": "https",
+									"host": [
+										"api-dev",
+										"whispirdev",
+										"com"
+									],
+									"path": [
+										"otp",
+										"send-code"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 30 Jan 2024 00:12:44 GMT"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "30f2b6ef-b0c2-4b15-a8da-008407211220"
+								},
+								{
+									"key": "x-amzn-Remapped-x-amzn-RequestId",
+									"value": "9963f519-f93f-475d-a92a-1261e47099e5"
+								},
+								{
+									"key": "x-amzn-Remapped-Content-Length",
+									"value": "278"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "SU7HXGI-SwMEqUA="
+								},
+								{
+									"key": "x-amzn-Remapped-Server",
+									"value": "Server"
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-65b83efb-2e3424b74950f6844d45f05f;Sampled=0;lineage=f9e37e7c:0"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Tue, 30 Jan 2024 00:12:44 GMT"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 4dc8beaa0eb68838835d7fc4f10289fc.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "MNL52-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "veWcQv02kQXabUFPyN5-wB5YYuk4VRoW2aydPgkAAQzA0WLCp_OUmQ=="
+								},
+								{
+									"key": "Content-Length",
+									"value": "278"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"505092\",\n    \"id\": \"lAtE5yU5dhwu02OwT3_GX\",\n    \"channel\": \"sms\",\n    \"codeLength\": 6,\n    \"to\": \"+63123456789\",\n    \"expiresAt\": \"2024-01-30T05:12:43.913Z\",\n    \"status\": \"pending\",\n    \"links\": {\n        \"verify\": \"https://api.au.whispir.com/otp/lAtE5yU5dhwu02OwT3_GX/verify-code\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Verify OTP",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-api-key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"to\": \"+63123456789\",\n    \"code\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/otp/{{current-verify-id}}/verify-code",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"otp",
+								"{{current-verify-id}}",
+								"verify-code"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200: Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{V5_API_KEY}}",
+										"type": "text"
+									},
+									{
+										"key": "whispirUserId",
+										"value": "{{USER_ID}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "requestId",
+										"value": "123",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"to\": \"+639075652923\",\n    \"code\": \"963315\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/FgOzgoe6YAEaWPDW1PDKi/verify",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"FgOzgoe6YAEaWPDW1PDKi",
+										"verify"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "215"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 Jul 2023 14:13:21 GMT"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "115f7e37-86b4-4e68-a2ac-e8a1ba1d76d0"
+								},
+								{
+									"key": "x-amzn-Remapped-x-amzn-RequestId",
+									"value": "fae90600-48e4-4b08-b643-d9f366471aff"
+								},
+								{
+									"key": "x-amzn-Remapped-Content-Length",
+									"value": "215"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 2a6cd2383f2f70d74f5acfbb719135b8.cloudfront.net (CloudFront), 1.1 933f4fb3c49c9a37f5b5461deacd212c.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "HmAUQHuHSwMFS5g="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-64a57a81-01f562b17d6ef9d36ee2cd1b;Sampled=0;lineage=a57e7ed2:0"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "SYD62-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "HKG60-C1"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Wed, 05 Jul 2023 14:13:21 GMT"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "-UB9IbIeCaPUd3jSO92emHF4JmYtAx3_mKkWhTrTaN39Ec4rdPbO9g=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"FgOzgoe6YAEaWPDW1PDKi\",\n    \"channel\": \"sms\",\n    \"to\": \"+63123456789\",\n    \"expiresAt\": \"2023-07-05T19:12:59.797Z\",\n    \"status\": \"verified\",\n    \"createdAt\": \"2023-07-05T14:12:59.797Z\",\n    \"updatedAt\": \"2023-07-05T14:12:59.797Z\",\n    \"links\": {}\n}"
+						},
+						{
+							"name": "400: OTP Already verified",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{V5_API_KEY}}",
+										"type": "text"
+									},
+									{
+										"key": "whispirUserId",
+										"value": "{{USER_ID}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "requestId",
+										"value": "123",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"to\": \"+639075652923\",\n    \"code\": \"963315\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/FgOzgoe6YAEaWPDW1PDKi/verify",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"FgOzgoe6YAEaWPDW1PDKi",
+										"verify"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "143"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 Jul 2023 14:13:37 GMT"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "1d2e1ed9-fc47-4a79-a71d-dffde1d29793"
+								},
+								{
+									"key": "x-amzn-Remapped-x-amzn-RequestId",
+									"value": "2d611365-2674-459e-b822-5b325dec4ea5"
+								},
+								{
+									"key": "x-amzn-Remapped-Content-Length",
+									"value": "143"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 c7cd0041811f30bfd9c4a00e82b6a3c8.cloudfront.net (CloudFront), 1.1 933f4fb3c49c9a37f5b5461deacd212c.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "HmAWyEyJSwMFUtw="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-64a57a91-18f9034f14622de37d2563c3;Sampled=0;lineage=a57e7ed2:0"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "SYD62-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "HKG60-C1"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Wed, 05 Jul 2023 14:13:37 GMT"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Error from cloudfront"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "JAfZQlYsBRpf0Qjnaqzkr_aOChkdQPcfOdIyNmisszn3S9VIHezXGw=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"message\": \"Client specified an invalid argument, request body or query param\",\n    \"detail\": \"The authenticationId is no longer valid\"\n}"
+						},
+						{
+							"name": "404: OTP Does record not exist",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{V5_API_KEY}}",
+										"type": "text"
+									},
+									{
+										"key": "whispirUserId",
+										"value": "{{USER_ID}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "requestId",
+										"value": "123",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"to\": \"+639075652923\",\n    \"code\": \"963315\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/FgOzgoe6YAEaWPDW1PDKid/verify",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"FgOzgoe6YAEaWPDW1PDKid",
+										"verify"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "120"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 Jul 2023 14:14:15 GMT"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "685903dd-0cd9-41a4-8abb-ac01b49eabd2"
+								},
+								{
+									"key": "x-amzn-Remapped-x-amzn-RequestId",
+									"value": "d13974f5-88c5-4e30-b35d-4d26e2a06128"
+								},
+								{
+									"key": "x-amzn-Remapped-Content-Length",
+									"value": "120"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 2a6cd2383f2f70d74f5acfbb719135b8.cloudfront.net (CloudFront), 1.1 933f4fb3c49c9a37f5b5461deacd212c.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "HmAcqEZVywMFY9g="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-64a57ab7-698db29632e8d86f21b7bb22;Sampled=0;lineage=a57e7ed2:0"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "SYD62-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "HKG60-C1"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Wed, 05 Jul 2023 14:14:15 GMT"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Error from cloudfront"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "G7APxOwvK_Tqv_L_r6Tm4KA5cWUJGxkpyTw3X7kmEU5x4whelZf1iQ=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 404,\n    \"message\": \"A specified resource is not found\",\n    \"detail\": \"OTP Record FgOzgoe6YAEaWPDW1PDKid does not exist\"\n}"
+						},
+						{
+							"name": "404: OTP with specified phone number does not exist",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{V5_API_KEY}}",
+										"type": "text"
+									},
+									{
+										"key": "whispirUserId",
+										"value": "{{USER_ID}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "requestId",
+										"value": "123",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"to\": \"+6390756529232\",\n    \"code\": \"963315\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/FgOzgoe6YAEaWPDW1PDKi/verify",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"FgOzgoe6YAEaWPDW1PDKi",
+										"verify"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "150"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 Jul 2023 14:14:47 GMT"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "9dc2f5c9-d773-4e9d-af35-1758f565243c"
+								},
+								{
+									"key": "x-amzn-Remapped-x-amzn-RequestId",
+									"value": "8c86fe17-d026-487a-9ccb-4fa9ac6f116b"
+								},
+								{
+									"key": "x-amzn-Remapped-Content-Length",
+									"value": "150"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 c9801432acaf39452e5421e7eeabc4b0.cloudfront.net (CloudFront), 1.1 933f4fb3c49c9a37f5b5461deacd212c.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "HmAhsHoUywMF9Xg="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-64a57ad7-7770b6797b5edf95310a4674;Sampled=0;lineage=a57e7ed2:0"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "SYD62-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "HKG60-C1"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Wed, 05 Jul 2023 14:14:47 GMT"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Error from cloudfront"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "aATCRLqYJN-IBP57K6pGhge_P5D-FBqm7EzBV0_uwkPJ_2WdPx9v3Q=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 404,\n    \"message\": \"A specified resource is not found\",\n    \"detail\": \"OTP Record FgOzgoe6YAEaWPDW1PDKi associated with +63123456789 does not exist\"\n}"
+						},
+						{
+							"name": "400: Wrong OTP code provided",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{V5_API_KEY}}",
+										"type": "text"
+									},
+									{
+										"key": "whispirUserId",
+										"value": "{{USER_ID}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "requestId",
+										"value": "123",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"to\": \"+639075652923\",\n    \"code\": \"963315\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/HFk4gXeKETi9R_90HG4mD/verify",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"HFk4gXeKETi9R_90HG4mD",
+										"verify"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "159"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 Jul 2023 14:15:53 GMT"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "915a6867-da8f-4b69-b092-f9d66f8c9178"
+								},
+								{
+									"key": "x-amzn-Remapped-x-amzn-RequestId",
+									"value": "57a0554f-09dc-4778-b7dd-6f83297e221a"
+								},
+								{
+									"key": "x-amzn-Remapped-Content-Length",
+									"value": "159"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 35202ecfee8e63e178de36be1b541f0e.cloudfront.net (CloudFront), 1.1 933f4fb3c49c9a37f5b5461deacd212c.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "HmAr7GrBywMFQOg="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-64a57b18-0433bb8a51dad8076ecbdc29;Sampled=0;lineage=a57e7ed2:0"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "SYD62-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "HKG60-C1"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Wed, 05 Jul 2023 14:15:53 GMT"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Error from cloudfront"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "CVFDNMf3_-ROl22UGRjMqVMPWNeU82lgN_l_4pIKX40k-CeBoROlKA=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"message\": \"Client specified an invalid argument, request body or query param\",\n    \"detail\": \"The provided OTP is not valid for this authenticationId\"\n}"
+						},
+						{
+							"name": "400: Maximum retry reached",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{V5_API_KEY}}",
+										"type": "text"
+									},
+									{
+										"key": "whispirUserId",
+										"value": "{{USER_ID}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "requestId",
+										"value": "123",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"to\": \"+639075652923\",\n    \"code\": \"963315\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/HFk4gXeKETi9R_90HG4mD/verify",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"HFk4gXeKETi9R_90HG4mD",
+										"verify"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "203"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 Jul 2023 14:17:29 GMT"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "cce83e9e-87bd-4ec7-973b-a083987822cf"
+								},
+								{
+									"key": "x-amzn-Remapped-x-amzn-RequestId",
+									"value": "57c049a8-2e2a-48cd-9a69-2742e88cc543"
+								},
+								{
+									"key": "x-amzn-Remapped-Content-Length",
+									"value": "203"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 9d6e86f5b232838ca6f2f480892525b2.cloudfront.net (CloudFront), 1.1 933f4fb3c49c9a37f5b5461deacd212c.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "HmA7DH6jSwMF2SA="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-64a57b79-0dc0a3431901c3294d79f6f1;Sampled=0;lineage=a57e7ed2:0"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "SYD62-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "HKG60-C1"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Wed, 05 Jul 2023 14:17:29 GMT"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Error from cloudfront"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "azKK15pa0T3fbVDjxziVw2n-Ux91Ldn31Tf41MhG-GpP1Pvbm9bp0Q=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"message\": \"Client specified an invalid argument, request body or query param\",\n    \"detail\": \"The maximum number of attempts for this authenticationId was exceeded without providing a valid OTP\"\n}"
+						},
+						{
+							"name": "400: OTP Already expired",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{V5_API_KEY}}",
+										"type": "text"
+									},
+									{
+										"key": "whispirUserId",
+										"value": "{{USER_ID}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "requestId",
+										"value": "123",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"to\": \"+639075652923\",\n    \"code\": \"963315\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/EhUz4EnTN2k2U1qfk1_Gx/verify",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"EhUz4EnTN2k2U1qfk1_Gx",
+										"verify"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "143"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 Jul 2023 14:20:11 GMT"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "6ca914eb-8343-4560-91cd-c75da0424d26"
+								},
+								{
+									"key": "x-amzn-Remapped-x-amzn-RequestId",
+									"value": "95a06fd5-a7f5-45ae-9c3e-c8e8c75a3387"
+								},
+								{
+									"key": "x-amzn-Remapped-Content-Length",
+									"value": "143"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 bc177ce25ddc555a7d303bc4d290a6ec.cloudfront.net (CloudFront), 1.1 933f4fb3c49c9a37f5b5461deacd212c.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "HmBUSGruywMF8rw="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-64a57c1b-6bed5df06787463531e574c5;Sampled=0;lineage=a57e7ed2:0"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "SYD62-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "HKG60-C1"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Wed, 05 Jul 2023 14:20:11 GMT"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Error from cloudfront"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "Aov1XWoC46kJVaiHVLO0cMC_Q9rb6Xmq6MQ_DhIhIH4mdFgZDqgEjw=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"message\": \"Client specified an invalid argument, request body or query param\",\n    \"detail\": \"The authenticationId is no longer valid\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "1. Whispir.com",
 			"event": [
 				{
